@@ -43,7 +43,7 @@ Common Family of Distributions Exponential Family $f(x|\theta)=h(x)c(\theta)\exp
 Why do we need exponential family?
  Simplify calculating exception and variance of different moments based on $t_{i}(x)$' We can use k statistics instead of a large number of original samples to make an inference about the parameter $\theta$ equivalently, without losing any information."><meta itemprop=datePublished content="2021-12-26T10:55:34+08:00">
 <meta itemprop=dateModified content="2021-12-26T10:55:34+08:00">
-<meta itemprop=wordCount content="1392">
+<meta itemprop=wordCount content="1428">
 <meta itemprop=keywords content><meta name=twitter:card content="summary">
 <meta name=twitter:title content="Theory Of Statistics">
 <meta name=twitter:description content="THIS IS A SIMPLIFIED LECTURE REVIEW BASED ON CUHKSZ&rsquo;S THEORY OF STATISTICS (Statistical Inference George Casella)
@@ -233,32 +233,32 @@ Why do we need exponential family?
 </ul>
 <p>$T'(x) = r(T(x))$, if $T'$ is sufficient, then $T$ is also sufficient. The converse of the statement is false.</p>
 <h2 id=minimal-sufficiency-statistic>Minimal Sufficiency Statistic</h2>
-<p>Why M.S.S? We have many sufficiency statistics and any one-to-one function of a sufficient statistic is a sufficient statistic. So we want to find one unique sufficient statistic.</p>
+<p>Why we need Minimal Sufficiency Statistic (M.S.S)? Since we have already many sufficiency statistics and any one-to-one function of a sufficient statistic is a sufficient statistic. Among these sufficient statistic, we want to find one unique sufficient statistic that is a function of another sufficient statistic.</p>
 <p>Definition: A sufficient statistic T is called minimal sufficient statistic if, for any other sufficient statistic T', T is a function of T'.</p>
 <p>How to find M.S.S?</p>
 <ul>
 <li>$\frac{f(x|\theta)}{f(y|\theta)}$ is independent of $\theta$ if and only if $T(x) = T(y)$</li>
 </ul>
 <h2 id=ancillary>Ancillary</h2>
-<p><strong>Definition</strong>: A statistic S(X) whose distribution does not depend on the parameter $\theta$ is called ancillary statistic. i.e. ($P(S(X)| \theta)$ independent of $\theta$ )</p>
+<p><strong>Definition</strong>: A statistic S(X) whose distribution does not depend on the parameter $\theta$ is called ancillary statistic. (i.e. $P(S(X)| \theta)$ independent of $\theta$ )</p>
 <h2 id=completeness>Completeness</h2>
-<p><strong>Definition</strong>: $E_{\theta}(g(T)) = 0$ for all $\theta \in \Theta$ implies $P_{\theta}(g(T)=0)=1$ for $\theta \in \Theta$ . Then $T(X)$ is called complete statistic</p>
+<p><strong>Definition</strong>: For $g(T)$ satisfies $E_{\theta}(g(T)) = 0$ for all $\theta \in \Theta$ implies $P_{\theta}(g(T)=0)=1$ for $\theta \in \Theta$ . Then $T(X)$ is called complete statistic</p>
 <p><strong>Interpretation:</strong></p>
 <ul>
 <li>No ancillary statistic can be constructed based on complete statistic.</li>
 <li>Unique unbiased estimator, i.e., $E(T(x)) =\tau(\theta)$ if $T$ is a complete sufficient statistic</li>
 </ul>
-<p><strong>Disprove:</strong></p>
+<p><strong>Disprove Completeness:</strong></p>
 <ul>
 <li>Construct ancillary statistic $g(T)=S(T)-E(S(T))$, $P(g(T)) \ne 0$</li>
-<li>Just cancel First moment</li>
+<li>Just cancel First moment i.e. $E[h_{1}(T)]=E[h_{2}(T)]$, $g(t)=E[h_{1}(T)]-E[h_{2}(T)]$</li>
 </ul>
 <p><strong>Prove</strong></p>
 <ul>
 <li>Direct calculate $E(g(T))=0$, or take the derivative related to $\theta$</li>
-<li>Using Full exponential family i.e., d=k</li>
+<li>Using the nice property of Full exponential family i.e., d=k</li>
 </ul>
-<p><strong>Note:</strong></p>
+<p><strong>Property of Complete Statistic:</strong></p>
 <ul>
 <li>$T' = r(T)$, if T is complete, then T' is also complete.</li>
 <li>A complete statistic can be not sufficient.</li>
@@ -267,7 +267,7 @@ Why do we need exponential family?
 <p>T(X) is complete and minimal sufficient statistic, then T(X) is independent of every ancillary statistic.</p>
 <h2 id=bahadurs-theorem>Bahadur&rsquo;s Theorem</h2>
 <p>C.S.S is in M.S.S.</p>
-<p>Note:</p>
+<p>There exists only two situation:</p>
 <ul>
 <li>If there exists a T(x) to be M.S.S., but not complete, then no sufficient statistic is complete.</li>
 <li>If there exists a T(x) such that T is C.S.S and M.S.S, then any M.S.S are also C.S.S.</li>
@@ -425,6 +425,8 @@ Why do we need exponential family?
 </footer>
 </article>
 </div>
+<script src=https://utteranc.es/client.js repo=Tsedao/Tsedao/tsedao.github.io issue-term=pathname theme=github-light crossorigin=anonymous async></script>
+<noscript>Please enable JavaScript to view the <a href=https://github.com/utterance>comments powered by utterances.</a></noscript>
 </div>
 </main>
 <footer id=footer class=footer>
