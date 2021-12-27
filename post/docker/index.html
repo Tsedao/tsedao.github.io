@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  
+  
+  
+  
+  
+  <link rel="prev" href="https://tsedao.github.io/post/theoryofstats/" />
+  
+  <link rel="canonical" href="https://tsedao.github.io/post/docker/" />
+  <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Docker Tutorial | Zitao&#39;s Blog
+       
+  </title>
+  <meta name="title" content="Docker Tutorial | Zitao&#39;s Blog">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Docker Tutorial"/>
+<meta name="twitter:description" content="Docker Install docker engine and Nvidia-docker on related platforms.
+Problem of seeing CUDA11 on docker while the host CUDA version in 11.
+ One of the primary functions of nvidia-docker is to inject the all of NVIDIA driver libs from the host into the container so that the container will run properly with GPUs. One of these libraries is libcuda.so. This is one of the reasons you are seeing nvidia-smi report the driver version from your host."/>
+
+  <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Docker Tutorial",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:\/\/tsedao.github.io\/post\/docker\/"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https:\/\/tsedao.github.io\/cover.png",
+    "width":  800 ,
+    "height":  600 
+  },
+  "genre": "post",
+  "keywords": "Docker",
+  "wordcount":  354 ,
+  "url": "https:\/\/tsedao.github.io\/post\/docker\/",
+  "datePublished": "2021-12-26T11:47:08\u002b08:00",
+  "dateModified": "2021-12-26T11:47:08\u002b08:00",
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Zitao Song",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:\/\/tsedao.github.io\/logo.png",
+      "width":  127 ,
+      "height":  40 
+    }
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Zitao Song"
+  },
+  "description": ""
+}
+</script>
+  <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$','$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+
+  window.addEventListener('load', (event) => {
+      document.querySelectorAll("mjx-container").forEach(function(x){
+        x.parentElement.classList += 'has-jax'})
+    });
+
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="https://tsedao.github.io">Zitao&#39;s Blog</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/post/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <a class="menu-item active" href="/post/" title="Posts">Posts</a>
+                
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;<a href="https://tsedao.github.io">Zitao&#39;s Blog</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/post/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <a class="menu-item active" href="/post/" title="Posts">Posts</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp">
+    <header class="post-header">
+        <h1 class="post-title">Docker Tutorial</h1>
+        <div class="post-meta">
+            Written by <a href="https://tsedao.github.io" rel="author"></a> with ♥ 
+                <span class="post-time">
+                    on <time datetime=2021-12-26 >26 December 2021</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://tsedao.github.io/categories/software/"> Software </a>
+                        
+                </span>
+                <i class="iconfont icon-timer"></i>
+                2 min
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h1 id="docker">Docker</h1>
+<p>Install <code>docker engine</code> and <code>Nvidia-docker</code> on related platforms.</p>
+<p>Problem of seeing CUDA11 on docker while the host CUDA version in 11.</p>
+<blockquote>
+<p>One of the primary functions of <code>nvidia-docker</code> is to inject the all of NVIDIA driver libs from the host into the container so that the container will run properly with GPUs. One of these libraries is <code>libcuda.so</code>. This is one of the reasons you are seeing <code>nvidia-smi</code> report the driver version from your host.</p>
+</blockquote>
+<p>Different between nvidia docker image: <a href="https://blog.csdn.net/qq_31511955/article/details/115112473">base/runtime/devel</a></p>
+<p>Example Template Format of Dockerfile</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-dockerfile" data-lang="dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> nvidia/cuda:10.2-cudnn7-runtime-ubuntu18.04</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ENV</span> PATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/root/miniconda3/bin:</span><span style="color:#e6db74">${</span>PATH<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">ARG</span> PATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/root/miniconda3/bin:</span><span style="color:#e6db74">${</span>PATH<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> apt update <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> apt install -y htop python3-dev wget<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> mkdir root/.conda <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> sh Miniconda3-latest-Linux-x86_64.sh -b <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> rm -f Miniconda3-latest-Linux-x86_64.sh<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> conda create -y -n env_name python<span style="color:#f92672">=</span>3.7<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> . home/<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> /bin/bash -c <span style="color:#e6db74">&#34;cd home/ \
+</span><span style="color:#e6db74">    &amp;&amp; source activate env_name \
+</span><span style="color:#e6db74">    &amp;&amp; pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">WORKDIR</span><span style="color:#e6db74"> home/</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">CMD</span> []<span style="color:#960050;background-color:#1e0010">
+</span></code></pre></div><p>Build your customized image through Dockerfile</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ docker build -t nameOfyouImage .
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ docker run -it nameOfyouImage /bin/bash <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>           -v absolute path of your localhost:absolute path of your remotehost <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>           -p <span style="color:#f92672">[</span>porting<span style="color:#f92672">]</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>           --rm <span style="color:#f92672">[</span>run the container the remove it after exit it<span style="color:#f92672">]</span>
+           --gpus
+</code></pre></div><p>Docker run contains docker create and run two commands, it first creates a container based on one image, then it runs /bin/bash on the container. One can use <code>exit</code> to stop the container or can push <code>Ctrl + P + Q</code> to detach container&rsquo;s terminal and keep the container running.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ docker ps
+</code></pre></div><p>Checking the running container, option  <code>-a</code> can be used to check the exited containers.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ docker start CONTAINERID
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ docker attach CONTAINERID
+$ docker exec -ti CONTAINERID  <span style="color:#75715e"># exec abd attach both require the container is running</span>
+</code></pre></div><p>Through ```docker ps `` , we could use the ID number of the container to restart it and attach to it based on the specified commends.</p>
+<h2 id="saving-and-loading-the-docker-image">Saving and loading the Docker image</h2>
+<p>Some of the servers are offline, some we may package the image we want and upload it to the remote server.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ docker commit   <span style="color:#75715e"># commit the change to the image</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ docker save myimage:latest | gzip &gt; myimage_latest.tar.gz
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ docker image load -i myimage_latest.tar.gz
+</code></pre></div><h1 id="source">Source</h1>
+<p><a href="https://www.youtube.com/watch?v=0qG_0CPQhpg">https://www.youtube.com/watch?v=0qG_0CPQhpg</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Zitao Song </span>
+                </p>
+            
+           
+            <p class="copyright-item">
+                    <span>Words:</span>
+                   <span>354</span>
+            </p>
+            
+            <p class="copyright-item">
+                
+                <span>Share:</span>
+                <span>
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+        
+      
+        
+      
+
+          
+
+          
+
+          
+
+          
+</span>
+                
+            </p>
+
+             
+            <p class="copyright-item">
+                Released under <a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-icon-tag"></i>Tag: 
+            
+            <span class="tag"><a href="https://tsedao.github.io/tags/docker/">
+                    #Docker</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">Back</a></span> · 
+                <span><a href="https://tsedao.github.io">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://tsedao.github.io/post/theoryofstats/" class="prev" rel="prev" title="Theory Of Statistics"><i class="iconfont icon-dajiantou"></i>&nbsp;Theory Of Statistics</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+          <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      (function() {
+          
+          
+          if (window.location.hostname == "localhost")
+              return;
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          var disqus_shortname = 'yourdiscussshortname';
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="https://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+ 
+
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2021 - 2021</span>
+        
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://tsedao.github.io">Zitao Song</a> | </span>
+         
+
+		  <span>Crafted with ❤️ by <a href="https://github.com/Fastbyte01/KeepIt" target="_blank" rel="external nofollow noopener noreffer">KeepIt</a> & <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a></span>
+    </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+
+
+
+
+     </div>
+  </body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  
+  
+  
+  
+  
+  
+  <link rel="next" href="https://tsedao.github.io/post/docker/" />
+  <link rel="canonical" href="https://tsedao.github.io/post/theoryofstats/" />
+  <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Theory Of Statistics | Zitao&#39;s Blog
+       
+  </title>
+  <meta name="title" content="Theory Of Statistics | Zitao&#39;s Blog">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Theory Of Statistics"/>
+<meta name="twitter:description" content="LECTURE REVIEW BASED ON CUHKSZ&rsquo;S THEORY OF STATISTICS (Statistical Inference George Casella)
+Common Family of Distributions Exponential Family $f(x|\theta)=h(x)c(\theta)\exp(\sum_{i}^{k}w_{i}(\theta)t_{i}(x))$
+ Binomial Distribution Poisson Distribution Exponential Distribution  Full exponential family versus curved exponential family
+Why we need exponential family?
+ Simplify calculating exceptions and variance based on $t_{i}(x)$&#39; We can use k statistics instead of a large number of original samples to make an inference about the parameter $\theta$ equivalently, without losing any information."/>
+
+  <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Theory Of Statistics",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https:\/\/tsedao.github.io\/post\/theoryofstats\/"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https:\/\/tsedao.github.io\/cover.png",
+    "width":  800 ,
+    "height":  600 
+  },
+  "genre": "post",
+  
+  "wordcount":  1279 ,
+  "url": "https:\/\/tsedao.github.io\/post\/theoryofstats\/",
+  "datePublished": "2021-12-26T10:55:34\u002b08:00",
+  "dateModified": "2021-12-26T10:55:34\u002b08:00",
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Zitao Song",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https:\/\/tsedao.github.io\/logo.png",
+      "width":  127 ,
+      "height":  40 
+    }
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Zitao Song"
+  },
+  "description": ""
+}
+</script>
+  <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$','$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      processEnvironments: true
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+    }
+  };
+
+  window.addEventListener('load', (event) => {
+      document.querySelectorAll("mjx-container").forEach(function(x){
+        x.parentElement.classList += 'has-jax'})
+    });
+
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="https://tsedao.github.io">Zitao&#39;s Blog</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/post/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <a class="menu-item active" href="/post/" title="Posts">Posts</a>
+                
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;<a href="https://tsedao.github.io">Zitao&#39;s Blog</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/post/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about" title="">About</a>
+                
+                <a class="menu-item active" href="/post/" title="Posts">Posts</a>
+                
+        </div>
+    </div>
+</nav>
+
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp">
+    <header class="post-header">
+        <h1 class="post-title">Theory Of Statistics</h1>
+        <div class="post-meta">
+            Written by <a href="https://tsedao.github.io" rel="author"></a> with ♥ 
+                <span class="post-time">
+                    on <time datetime=2021-12-26 >26 December 2021</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://tsedao.github.io/categories/stats/"> Stats </a>
+                        
+                </span>
+                <i class="iconfont icon-timer"></i>
+                7 min
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <p>LECTURE REVIEW BASED ON CUHKSZ&rsquo;S THEORY OF STATISTICS (Statistical Inference George Casella)</p>
+<h1 id="common-family-of-distributions">Common Family of Distributions</h1>
+<h2 id="exponential-family">Exponential Family</h2>
+<p>$f(x|\theta)=h(x)c(\theta)\exp(\sum_{i}^{k}w_{i}(\theta)t_{i}(x))$</p>
+<ul>
+<li>Binomial Distribution</li>
+<li>Poisson Distribution</li>
+<li>Exponential Distribution</li>
+</ul>
+<p>Full exponential family versus curved exponential family</p>
+<p>Why we need exponential family?</p>
+<ul>
+<li>Simplify calculating exceptions and variance based on $t_{i}(x)$'</li>
+<li>We can use k statistics instead of a large number of original samples to make an inference about the parameter $\theta$ equivalently, without losing any information. i.e., Good property of sufficiency and completeness.</li>
+</ul>
+<p>Note: for some distribution, we need to calculate the distribution using indicator function based on its support.</p>
+<h2 id="location-and-scale-family">Location and Scale Family</h2>
+<ul>
+<li>Let $f(x)$ be any pdf. Then the family of pdfs $f(x-\mu)$, indexed by the parameter $\mu$ is called the location family.
+<ul>
+<li>If Z has a pdf $f(z)$, then $X=Z+\mu$ has density $f(x-\mu)$</li>
+</ul>
+</li>
+<li>Let $f(x)$ be any pdf. Then the family of pdfs $\frac{1}{\sigma}f(\frac{x}{\sigma})$ is called the scale family with standard pdf $f(x)$</li>
+<li>How to prove the above statement? Event equivalence!
+<ul>
+<li>${X = x } \Leftrightarrow {Z = \frac{X-\mu}{\sigma}}$</li>
+<li>$P(X=x)=P(Z=\frac{x-\mu}{\sigma})$</li>
+<li>$f_{X}(x)dx=f(\frac{x-\mu}{\sigma})dz$</li>
+</ul>
+</li>
+</ul>
+<h1 id="data-reduction">Data Reduction</h1>
+<p>Why reduction? Summarize the information in a sample by determine a few key features of the sample values</p>
+<p>How to do reduction? The method that do not discard important information about unknown parameter $\theta$ and methods that successfully discard information that is irrelevant as far as gaining knowledge about $\theta$ is concerned.</p>
+<h2 id="sufficiency">Sufficiency</h2>
+<p>Definition: $P(X=x | T(X)=T(x))$ is independent of $\theta$. The conditional distribution of a sample $X$ given the value $T(X)$ does not depend on $\theta$.</p>
+<p>It turns out that outside the exponential family distribution, it is rare to have a sufficient statistic of smaller dimension of the sample.</p>
+<p>How to find sufficiency statistic?</p>
+<ul>
+<li>$\frac{p(x|\theta)}{q(T(x|\theta)}$ independent of $\theta$</li>
+<li>Factorization theorem $f(x|\theta)=h(x)g(T(x)|\theta)$</li>
+<li>Using exponential family $\sum_{i}^{n}t(X_{i})$</li>
+</ul>
+<p>$T'(x) = r(T(x))$, if $T'$ is sufficient, then $T$ is also sufficient. The converse of the statement is false.</p>
+<h2 id="minimal-sufficiency-statistic">Minimal Sufficiency Statistic</h2>
+<p>Why M.S.S? We have many sufficiency statistics and any one-to-one function of a sufficient statistic is a sufficient statistic.</p>
+<p>Definition: A sufficient statistic T is called minimal sufficient statistic if, for any other sufficient statistic T', T is a function of T'.</p>
+<p>How to find M.S.S?</p>
+<ul>
+<li>$\frac{f(x|\theta)}{f(y|\theta)}$  is independent of $\theta$ if and only if  $T(x) = T(y)$</li>
+</ul>
+<h2 id="ancillary">Ancillary</h2>
+<p>Definition: A statistic S(X) whose distribution does not depend on the parameter $\theta$ is called ancillary statistic. i.e. ($P(S(X)| \theta)$ independent of $\theta$ )</p>
+<h2 id="completeness">Completeness</h2>
+<p>Definition: $E_{\theta}(g(T)) = 0$ for all $\theta \in \Theta$  implies $P_{\theta}(g(T)=0)=1$ for $\theta \in \Theta$ . Then $T(X)$ is called complete statistic</p>
+<p>Interpretation:</p>
+<ul>
+<li>No ancillary statistic can be constructed based on complete statistic.</li>
+<li>Unique unbiased estimator,  i.e., $E(T(x)) =\tau(\theta)$</li>
+</ul>
+<p>Disprove</p>
+<ul>
+<li>Construct ancillary statistic $g(T)=S(T)-E(S(T))$, $P(g(T)) \ne 0$</li>
+<li>Just cancel First moment</li>
+</ul>
+<p>Prove</p>
+<ul>
+<li>Direct calculate $E(g(T))=0$, or take the derivative related to $\theta$</li>
+<li>Using Full exponential family i.e., d=k</li>
+</ul>
+<p>Note:</p>
+<ul>
+<li>$T' = r(T)$, if T is complete, then T' is also complete.</li>
+<li>A complete statistic can be not sufficient.</li>
+</ul>
+<h2 id="basus-theorem">Basu&rsquo;s Theorem</h2>
+<p>T(X) is complete and minimal sufficient statistic, then T(X) is independent of every ancillary statistic.</p>
+<h2 id="bahadurs-theorem">Bahadur&rsquo;s Theorem</h2>
+<p>C.S.S is in M.S.S.</p>
+<p>Note:</p>
+<ul>
+<li>If there exists a T(x) to be M.S.S., but not complete, then no sufficient statistic is complete.</li>
+<li>If there exists a T(x) such that T is C.S.S and M.S.S, then any M.S.S are also C.S.S.</li>
+</ul>
+<h1 id="point-estimation">Point Estimation</h1>
+<h2 id="methods-of-finding-point-estimators">Methods of Finding Point Estimators</h2>
+<h3 id="method-of-moment">Method of Moment</h3>
+<p>Drawback: sometimes the estimator will out of range</p>
+<h3 id="maximum-likelihood-estimation">Maximum Likelihood Estimation</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">Scalar</th>
+<th style="text-align:center">Multidimension</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Continuous</td>
+<td style="text-align:center">Yes (Second order sufficient condition SOSC)</td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:center">Discrete</td>
+<td style="text-align:center">Yes</td>
+<td style="text-align:center">No (Discrete optimization)</td>
+</tr>
+</tbody>
+</table>
+<p>Advantage: the range of MLE coincides the range of parameters.</p>
+<p>Drawback:</p>
+<ul>
+<li>
+<p>Difficult to find a global maximum</p>
+</li>
+<li>
+<p>numerical sensitivity. That is how sensitive the estimator to the small change in the data.</p>
+</li>
+</ul>
+<p>Invariance property of MLE. i.e., MLE of $\tau(\theta)$ is $\tau(\hat{\theta})$</p>
+<h3 id="bayes-estimator">Bayes Estimator</h3>
+<p>Data: (x1,x2,&hellip;xn) + Expert Knowledge $f(x|\theta) \text{ or } \pi(x)$</p>
+<p>Cons: controversial because it inherently embraces a subjective notion of probability. It has no guarantee of long time performance</p>
+<p>Posterior distribution: $\pi(\theta|x) = f(x|\theta)\pi(\theta)/ m(x)$</p>
+<h2 id="methods-of-evaluating-point-estimators">Methods of Evaluating Point Estimators</h2>
+<h3 id="mean-square-error-mse">Mean Square Error (MSE)</h3>
+<p>MSE = $E_{\theta}(W-\theta)^{2}=Var_{\theta}(W)+(Bias_{\theta}(W))^{2}$</p>
+<p>MSE is not good for scale parameter (i.e. $\sigma$ in normal distribution), since it MSE penalizes equally for overestimation and underestimation. And the scale case, 0 is a natural lower bound, so the estimation problem is not symmetric.</p>
+<h3 id="best-unbiased-estimator-minimize-variance-and-control-bias">Best Unbiased Estimator (Minimize variance and control bias)</h3>
+<p>Motivation: many times we can a estimator that is uniformly better than the other estimator. (i.e., MSE($\hat{\sigma}^{2}$)&lt;MSE($S^{2}$) for any $\sigma^{2} &gt; 0$). If we can find an unbiased estimator with uniformly smallest variance, a best unbiased estimator, then our task is done.</p>
+<ul>
+<li>
+<p>UMVUE (uniform minimum variance unbiased estimator)</p>
+</li>
+<li>
+<p>Cramer-Rao Inequality Cramer-Rao Lower Bound valid or not?</p>
+<p>We can specify a lower bound, say $B(\theta)$, on the variance of any unbiased estimator of $\tau(\theta)$. If we can attain such lower bound, we can say we have found a best unbiased estimator.</p>
+</li>
+<li>
+<p>Attainment</p>
+<p>There is no guarantee that the bound is sharp.</p>
+</li>
+<li>
+<p>Use of sufficiency and unbiasedness</p>
+<p>Rao-Blackwell gives decrease property conditioned on sufficiency</p>
+<p>Condition a unbiased statistic based on a sufficient statistic $T$, i.e., $\phi(T)=E(W|T)$， then $E_{\theta}\phi(T)=\tau(\theta)$ and $Var_{\theta}(\phi(T)) \leq Var_{\theta}(W)$ for all $\theta$.</p>
+<p>Uniqueness of best estimator</p>
+<blockquote>
+<p>DISPROVE BEST ESTIMATOR (IF IT IS NOT ATTAINED BY CRLB): If $E_{\theta}W = \tau(\theta)$, W is the best unbiased estimator of $\tau(\theta)$ if and only if $W$ is uncorrelated with all unbiased estimators of 0.</p>
+</blockquote>
+<blockquote>
+<p>If T is complete and sufficient statistic, then the unbiased estimator of $\tau(\theta)$, $\phi(T)$ is uncorrelated with any unbiased estimator of 0. So that it gives the best estimator</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="minimize-risk-function">Minimize Risk Function</h3>
+<h1 id="hypothesis-test">Hypothesis test</h1>
+<p>Definition: A <em>hypothesis</em> is a a statement about a population parameter. A hypothesis test is a rule that specifies 1. For which sample values $H_{0}$ is rejected and for which sample value $H_{0}$ is accepted to be true.</p>
+<h2 id="find-hypothesis-test">Find Hypothesis test</h2>
+<p>Frequentist view point: Compare the likelihood of H0 and H1</p>
+<p>LRT, Union-Intersection, Intersection-Union gives rejection region $X\in R = {\lambda(x)&lt;c}$</p>
+<p>Bayesian view point: Compare the probability of H0 and H1</p>
+<h2 id="evaluate-hypothesis-test">Evaluate Hypothesis test</h2>
+<p>Type 1 error (incorrectly reject H0) and Type 2 error (incorrectly accept H0)</p>
+<p>Power function ($P_{\theta}(X \in R) = \beta(\theta)$ that quantifies both Type 1 and Type 2 error)</p>
+<p>Control Type 1 error while minimizing Type 2 error. i.e Size alpha test &lsquo;'=&rsquo;' and level alpha test &ldquo;$\le$&rdquo; restrict c in some degree $\text{sup}<em>{\theta \in \theta</em>{0}} P(X\in R) = \alpha$, control the type 1 error</p>
+<h3 id="most-powerful-test">Most Powerful Test</h3>
+<p>Size alpha test and level alpha test may not be unique. We need to minimize Type 2 error and control Type 1 error simultaneously</p>
+<p>UMP (uniformly most powerful) test further impose hard restriction (Type 2 error) test from level alpha test.</p>
+<p>Neyman-Pearson for simple hypothesis</p>
+<p>Karlin Rubin for one-side hypothesis</p>
+<p>Non-existence for two-side hypothesis</p>
+<p>Sometime UMP does not exist, what we should do? (Two-side hypothesis)</p>
+<h3 id="p-value">P-value</h3>
+<p>Definition: P-value is the probability of getting a value of test statistic that is at least as extreme as the one representing the sample data. $P(W(X)&gt;W(x)|H_{0} \text{ is true})$</p>
+<p>P value reports the test results on a continuous case, rather than a dichotomous case &lsquo;accept&rsquo; and &lsquo;reject&rsquo;</p>
+<p>P-value cannot quantify Type 2 error and the definition of extremeness is vague.</p>
+<p>We can construct $P(X) = \text{sup}<em>{\theta \in \Theta</em>{0}}P_{\theta}(W(X) \ge W(x))$ or $P(W(X)\ge W(x) | S(X)=S(x))$ conditioned on sufficient statistic.</p>
+<h1 id="interval-estimation">Interval Estimation</h1>
+<p>Every confidence set correspond to a hypothesis test and vice versa.</p>
+<h2 id="methods-of-finding-interval-estimation">Methods of finding Interval Estimation</h2>
+<p>Inverted LRT Step 1: find LRT accept region,  Step 2: turn it to explicit form, Step 3: show that exist for all $\theta$</p>
+<p>Pivot Quantiles</p>
+<h2 id="methods-of-evaluating-interval-estimation">Methods of Evaluating Interval Estimation</h2>
+<p>Minimize the size (length) of interval and control the coverage probability. (Solved by Lagrange multipliers with equality constraints.)</p>
+<p>Decision Theory. $R(\theta,c)= E_{\theta}[L(\theta, c)]=bE_{\theta}[\text{length}(C(X))]-P_{\theta}(\theta \in C(X))</p>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Zitao Song </span>
+                </p>
+            
+           
+            <p class="copyright-item">
+                    <span>Words:</span>
+                   <span>1279</span>
+            </p>
+            
+            <p class="copyright-item">
+                
+                <span>Share:</span>
+                <span>
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+        
+      
+        
+      
+
+          
+
+          
+
+          
+
+          
+</span>
+                
+            </p>
+
+             
+            <p class="copyright-item">
+                Released under <a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">Back</a></span> · 
+                <span><a href="https://tsedao.github.io">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+         
+        
+        <a href="https://tsedao.github.io/post/docker/" class="next" rel="next" title="Docker Tutorial">Docker Tutorial&nbsp;<i class="iconfont icon-xiaojiantou"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+          <div id="disqus_thread"></div>
+  <script type="text/javascript">
+      (function() {
+          
+          
+          if (window.location.hostname == "localhost")
+              return;
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          var disqus_shortname = 'yourdiscussshortname';
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="https://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+ 
+
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2021 - 2021</span>
+        
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://tsedao.github.io">Zitao Song</a> | </span>
+         
+
+		  <span>Crafted with ❤️ by <a href="https://github.com/Fastbyte01/KeepIt" target="_blank" rel="external nofollow noopener noreffer">KeepIt</a> & <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a></span>
+    </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+
+
+
+
+     </div>
+  </body>
+</html>
