@@ -44,6 +44,16 @@ Problem of seeing CUDA11 on docker while the host CUDA version in 11.
 Problem of seeing CUDA11 on docker while the host CUDA version in 11.
  One of the primary functions of nvidia-docker is to inject the all of NVIDIA driver libs from the host into the container so that the container will run properly with GPUs. One of these libraries is libcuda.so. This is one of the reasons you are seeing nvidia-smi report the driver version from your host."><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
+<script type=text/x-mathjax-config> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+<script type=text/x-mathjax-config>
+ MathJax.Hub.Config({
+   tex2jax: {
+     inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+     processEscapes: true
+   }
+ });
+</script>
+<script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </head>
 <body>
 <div id=mobile-navbar class=mobile-navbar>
