@@ -11,7 +11,7 @@
 <meta name=msapplication-navbutton-color content="#f8f5ec">
 <meta name=apple-mobile-web-app-capable content="yes">
 <meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
-<meta name=author content="Tsedao"><meta name=description content="Search      var lunrIndex, $results, documents; function initLunr() { // retrieve the index file $.getJSON(&#34;../index.json&#34;) .done(function(index) { documents = index; lunrIndex = lunr(function(){ this.ref('href') this.field('content') this.field(&#34;title&#34;, { boost: 10 }); this.field(&#34;tags&#34;, { boost: 5 }); documents.forEach(function(doc) { try { // console.log(doc.href) this.add(doc) } catch (e) {} }, this) }) }) .fail(function(jqxhr, textStatus, error) { var err = textStatus + &#34;, &#34; + error; console.error(&#34;Error getting Lunr index file:&#34;"><meta name=keywords content="Hugo,theme,even">
+<meta name=author content="Tsedao"><meta name=description content="Search  Go &amp;nbsp;      "><meta name=keywords content="Hugo,theme,even">
 <meta name=generator content="Hugo 0.91.2 with theme even">
 <link rel=canonical href=https://tsedao.github.io/search/>
 <link href=https://tsedao.github.io/search/index.xml rel=alternate type=application/rss+xml title=SadWet>
@@ -25,15 +25,15 @@
 <link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
 <meta property="og:title" content>
-<meta property="og:description" content="Search      var lunrIndex, $results, documents; function initLunr() { // retrieve the index file $.getJSON(&#34;../index.json&#34;) .done(function(index) { documents = index; lunrIndex = lunr(function(){ this.ref('href') this.field('content') this.field(&#34;title&#34;, { boost: 10 }); this.field(&#34;tags&#34;, { boost: 5 }); documents.forEach(function(doc) { try { // console.log(doc.href) this.add(doc) } catch (e) {} }, this) }) }) .fail(function(jqxhr, textStatus, error) { var err = textStatus + &#34;, &#34; + error; console.error(&#34;Error getting Lunr index file:&#34;">
+<meta property="og:description" content="Search  Go &nbsp;      ">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://tsedao.github.io/search/"><meta property="article:section" content>
 <meta itemprop=name content>
-<meta itemprop=description content="Search      var lunrIndex, $results, documents; function initLunr() { // retrieve the index file $.getJSON(&#34;../index.json&#34;) .done(function(index) { documents = index; lunrIndex = lunr(function(){ this.ref('href') this.field('content') this.field(&#34;title&#34;, { boost: 10 }); this.field(&#34;tags&#34;, { boost: 5 }); documents.forEach(function(doc) { try { // console.log(doc.href) this.add(doc) } catch (e) {} }, this) }) }) .fail(function(jqxhr, textStatus, error) { var err = textStatus + &#34;, &#34; + error; console.error(&#34;Error getting Lunr index file:&#34;">
-<meta itemprop=wordCount content="154">
+<meta itemprop=description content="Search  Go &nbsp;      ">
+<meta itemprop=wordCount content="3">
 <meta itemprop=keywords content><meta name=twitter:card content="summary">
 <meta name=twitter:title content>
-<meta name=twitter:description content="Search      var lunrIndex, $results, documents; function initLunr() { // retrieve the index file $.getJSON(&#34;../index.json&#34;) .done(function(index) { documents = index; lunrIndex = lunr(function(){ this.ref('href') this.field('content') this.field(&#34;title&#34;, { boost: 10 }); this.field(&#34;tags&#34;, { boost: 5 }); documents.forEach(function(doc) { try { // console.log(doc.href) this.add(doc) } catch (e) {} }, this) }) }) .fail(function(jqxhr, textStatus, error) { var err = textStatus + &#34;, &#34; + error; console.error(&#34;Error getting Lunr index file:&#34;"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<meta name=twitter:description content="Search  Go &nbsp;      "><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
 <script type=text/x-mathjax-config> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
 <script type=text/x-mathjax-config>
@@ -104,11 +104,13 @@
 <div class=post-content>
 <h1 id=search>Search</h1>
 <div>
-<p><input id=search type=text placeholder="Enter your query"></p>
-<ul id=results></ul>
-<script src=/js/jquery-2.1.4.min.js></script>
-<script src=/js/lunr.js></script>
-<script>var lunrIndex,$results,documents;function initLunr(){$.getJSON("../index.json").done(function(a){documents=a,lunrIndex=lunr(function(){this.ref('href'),this.field('content'),this.field("title",{boost:10}),this.field("tags",{boost:5}),documents.forEach(function(a){try{this.add(a)}catch(a){}},this)})}).fail(function(d,a,b){var c=a+", "+b;console.error("Error getting Lunr index file:",c)})}function search(a){return lunrIndex.search(a).map(function(a){return documents.filter(function(b){try{return b.href===a.ref}catch(a){console.log('whoops')}})[0]})}function renderResults(a){if(!a.length)return;a.slice(0,30).forEach(function(a){var b=$("<li>");b.append($("<a>",{href:a.href,text:a.title})),b.append(" <small><time>"+a.date+"</time></small>"),$results.append(b)})}function initUI(){$results=$("#results"),$("#search").keyup(function(){var a,b;if($results.empty(),a=$(this).val(),a.length<2)return;b=search(a),renderResults(b)})}initLunr(),$(document).ready(function(){initUI()})</script>
+<p><input disabled placeholder="Enter search text" type=text name=searchBox id=searchBox class="w-75 float-left">
+<button id=btnGo disabled class="btn btn-primary ml-3 float-left">Go</button> </p>
+<div>&nbsp;</div>
+<div class=sep></div>
+<a name=resultsArea></a>
+<div id=results></div>
+<script src=/js/search.js></script>
 </div>
 </div>
 </article>
@@ -149,7 +151,5 @@ Theme -
 <script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
-<script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],tags:'ams'}}</script>
-<script type=text/javascript async src=/lib/mathjax/es5/tex-mml-chtml.js></script>
 </body>
 </html>
