@@ -39,7 +39,7 @@ Problem of seeing CUDA11 on docker while the host CUDA version in 11.
 Problem of seeing CUDA11 on docker while the host CUDA version in 11.
  One of the primary functions of nvidia-docker is to inject the all of NVIDIA driver libs from the host into the container so that the container will run properly with GPUs. One of these libraries is libcuda.so. This is one of the reasons you are seeing nvidia-smi report the driver version from your host."><meta itemprop=datePublished content="2021-12-26T11:47:08+08:00">
 <meta itemprop=dateModified content="2021-12-26T11:47:08+08:00">
-<meta itemprop=wordCount content="391">
+<meta itemprop=wordCount content="392">
 <meta itemprop=keywords content="Docker,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="Docker Tutorial">
 <meta name=twitter:description content="Docker Installation Install docker engine and Nvidia-docker on related platforms.
@@ -248,9 +248,9 @@ Problem of seeing CUDA11 on docker while the host CUDA version in 11.
 $ docker <span class=nb>exec</span> -ti CONTAINERID  <span class=c1># exec abd attach both require the container is running</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>Through ```docker ps `` , we could use the ID number of the container to restart it and attach to it based on the specified commends.</p>
+</div><p>Through <code>docker ps </code> , we could use the ID number of the container to restart it and attach to it based on the specified commends.</p>
 <h1 id=saving-and-loading-the-docker-image>Saving and loading the Docker image</h1>
-<p>Some of the servers are offline, some we may package the image we want and upload it to the remote server.</p>
+<p>Some of the servers or clusters are offline, so we may package the image we want and upload it to the remote server.</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
