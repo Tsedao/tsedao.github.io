@@ -21,13 +21,19 @@ var searchFn = function () {
             var result = results[i].item;
             var openAnchor = "<a href=\"" + result.permalink + "\" " +
                 "alt=\"" + result.showTitle + "\">";
+            var imagePart = result.image
+                ? ("<div class=\"col-12 col-md-4 col-lg-2\">" +
+                    openAnchor + "<img src=\"" + result.image + "\" alt=\"" + result.showTitle + "\" class=\"rounded w-100\"></a></div>")
+                : "";
+            var descriptionPart = result.showDescription
+                ? ("<div class=\"col-12 col-md-8 col-lg-10\"><small>" + result.showDescription + "</small></div>")
+                : "";
             var resultPane = "<div class=\"container\">" +
                 "<div class=\"row\">" +
                 openAnchor + result.showTitle + "</a></div>" +
                 "<div class=\"row\">" +
-                "<div class=\"col-12 col-md-4 col-lg-2\">" +
-                openAnchor + "<img src=\"" + result.image + "\" alt=\"" + result.showTitle + "\" class=\"rounded w-100\"></a></div>" +
-                ("<div class=\"col-12 col-md-8 col-lg-10\"><small>" + result.showDescription + "</small></div>") +
+                imagePart +
+                descriptionPart +
                 "</div></div>";
             $("#results").append(resultPane);
         }
